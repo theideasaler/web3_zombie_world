@@ -20,7 +20,16 @@ There are so many ways to start your solidity development as listed on the langu
 First, install solc globally: `npm install -g solc`
 
 
-## Setup VS Code
+## Setup Solidity Development Environment Locally
+Truffle and Hardhat both provides development and testing environments. You can use either for your solidity development. [npm download comparison](https://npmcharts.com/compare/truffle,hardhat?interval=30&log=false)
+
+### Setup Truffle in VSCode
 Follow this [video](https://www.youtube.com/watch?v=2dEruyIs2qQ&ab_channel=TenaCodes)
+Or this [article](https://www.quicknode.com/guides/web3-sdks/how-to-setup-local-development-environment-for-solidity) 
+
 Truffle: `npm install -g truffle`
+
 Ganache: `npm install -g ganache`
+
+### Setup Hardhat in VSCode
+Follow Hardhat [official doc](https://hardhat.org/getting-started) or [this](https://docs.openzeppelin.com/learn/developing-smart-contracts?pref=hardhat)
