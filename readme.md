@@ -1,35 +1,46 @@
-# Blockchain sample project
+# Advanced Sample Hardhat Project
 
-## A very good introduction before start
-This udemy course has a well-explained [introduction](https://bettech.udemy.com/course/ethereum-and-solidity-the-complete-developers-guide/ ) of how ETH blockchain works. You do not have to go through all of it, **only watching the Section 1: What is Ethereum will be enough to start**. It gives you a whole picture of what a blockchain is, what a smart contract is.
+This project demonstrates an advanced Hardhat use case, integrating other tools commonly used alongside Hardhat in the ecosystem.
 
-## Web3 App Structure
-Before learning a new thing, it's better to have a whole picture of it. For web3 apps.
+The project comes with a sample contract, a test for that contract, a sample script that deploys that contract, and an example of a task implementation, which simply lists the available accounts. It also comes with a variety of other tools, preconfigured to work with the project code.
 
-Tradition Web App: 
-`Frontend (Angular/React/Flutter/etc)` <--> `APIs (REST/GraphQL/etc)` <--> `Server (.NET/Node/etc)` <--> `Database`
+Try running some of the following tasks:
 
-Web3 App:
-`Frontend (Angular/React/Flutter/etc)` <--> `ETH APIs (Web3.js/ethers.js/etc)` <--> `ETH VM (Solidity)` <--> `Blockchain`
+```shell
+npx hardhat accounts
+npx hardhat compile
+npx hardhat clean
+npx hardhat test
+npx hardhat node
+npx hardhat help
+REPORT_GAS=true npx hardhat test
+npx hardhat coverage
+npx hardhat run scripts/deploy.ts
+TS_NODE_FILES=true npx ts-node scripts/deploy.ts
+npx eslint '**/*.{js,ts}'
+npx eslint '**/*.{js,ts}' --fix
+npx prettier '**/*.{json,sol,md}' --check
+npx prettier '**/*.{json,sol,md}' --write
+npx solhint 'contracts/**/*.sol'
+npx solhint 'contracts/**/*.sol' --fix
+```
 
-## Installation
-The first thing is to config your solidity compiler.
+# Etherscan verification
 
-There are so many ways to start your solidity development as listed on the language official [documentation](https://docs.soliditylang.org/en/v0.8.15/installing-solidity.html#installing-solidity). However, for web developer, I believe `npm` will be the most comfortable way to start with solidity.
+To try out Etherscan verification, you first need to deploy a contract to an Ethereum network that's supported by Etherscan, such as Ropsten.
 
-First, install solc globally: `npm install -g solc`
+In this project, copy the .env.example file to a file named .env, and then edit it to fill in the details. Enter your Etherscan API key, your Ropsten node URL (eg from Alchemy), and the private key of the account which will send the deployment transaction. With a valid .env file in place, first deploy your contract:
 
+```shell
+hardhat run --network ropsten scripts/deploy.ts
+```
 
-## Setup Solidity Development Environment Locally
-Truffle and Hardhat both provides development and testing environments. You can use either for your solidity development. [npm download comparison](https://npmcharts.com/compare/truffle,hardhat?interval=30&log=false)
+Then, copy the deployment address and paste it in to replace `DEPLOYED_CONTRACT_ADDRESS` in this command:
 
-### Setup Truffle in VSCode
-Follow this [video](https://www.youtube.com/watch?v=2dEruyIs2qQ&ab_channel=TenaCodes)
-Or this [article](https://www.quicknode.com/guides/web3-sdks/how-to-setup-local-development-environment-for-solidity) 
+```shell
+npx hardhat verify --network ropsten DEPLOYED_CONTRACT_ADDRESS "Hello, Hardhat!"
+```
 
-Truffle: `npm install -g truffle`
+# Performance optimizations
 
-Ganache: `npm install -g ganache`
-
-### Setup Hardhat in VSCode
-Follow Hardhat [official doc](https://hardhat.org/getting-started) or [this](https://docs.openzeppelin.com/learn/developing-smart-contracts?pref=hardhat)
+For faster runs of your tests and scripts, consider skipping ts-node's type checking by setting the environment variable `TS_NODE_TRANSPILE_ONLY` to `1` in hardhat's environment. For more details see [the documentation](https://hardhat.org/guides/typescript.html#performance-optimizations).
