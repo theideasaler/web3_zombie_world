@@ -18,8 +18,11 @@ async function main() {
   const greeter = await Greeter.deploy("Hello, Hardhat!");
 
   await greeter.deployed();
-
   console.log("Inbox deployed to:", greeter.address);
+
+  console.log("Inbox message:", await greeter.getMessage());
+  await greeter.setMessage("A new message test!");
+  console.log("Inbox message:", await greeter.getMessage());
 }
 
 // We recommend this pattern to be able to use async/await everywhere
