@@ -20,9 +20,9 @@ async function main() {
   await greeter.deployed();
   console.log("Inbox deployed to:", greeter.address);
 
-  console.log("Inbox message:", await greeter.getMessage());
+  console.log("Inbox message:", await greeter.message(), Date().toString());
   await greeter.setMessage("A new message test!");
-  console.log("Inbox message:", await greeter.getMessage());
+  console.log("Inbox message:", await greeter.message(), Date().toString());
 }
 
 // We recommend this pattern to be able to use async/await everywhere
