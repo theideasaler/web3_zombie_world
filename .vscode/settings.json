@@ -1,4 +1,8 @@
 {
-    "solidity.defaultCompiler": "remote",
-    "solidity.compileUsingRemoteVersion": "v0.4.17+commit.bdeb9e52"
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "solidity.defaultCompiler": "remote",
+  "solidity.compileUsingRemoteVersion": "v0.4.17+commit.bdeb9e52",
+  "[solidity]": {
+    "editor.formatOnSave": true
+  }
 }
