@@ -1,8 +1,11 @@
 pragma solidity >=0.8.0 <0.9.0;
 
 import "./zombiefeeding.sol";
+import "./safemath.sol";
 
 contract ZombieHelper is ZombieFeeding {
+    using SafeMath for uint256;
+
     uint256 private levelUpFee = 0.001 ether;
 
     modifier aboveLevel(uint256 _level, unit _zombieId) {
@@ -24,7 +27,7 @@ contract ZombieHelper is ZombieFeeding {
 
     function levelUp(uint256 _zombieId) external payable {
         require(msg.value == levelUpFee, "You must pay the fee");
-        zombies[_zombieId].level++;
+        zombies[_zombieId].level = zombies[_zombieId].level.add(1);
     }
 
     function changeName(uint256 _zombieId, string calldata _newName)
