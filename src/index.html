@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>CryptoZombies front-end</title>
+    <script
+      language="javascript"
+      type="text/javascript"
+      src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"
+    ></script>
+    <script
+      language="javascript"
+      type="text/javascript"
+      src="./web3.min.js"
+    ></script>
+  </head>
+  <body>
+    <script>
+      //Option 1: programmatically set up the web3 provider
+      // var web3 = new Web3(new Web3.providers.WebsocketProvider("wss://mainnet.infura.io/ws"));
+
+      //Option 2: Asking users to install metamask
+      window.addEventListener("load", function () {
+        // Checking if Web3 has been injected by the browser (Mist/MetaMask)
+        if (typeof web3 !== "undefined") {
+          // Use Mist/MetaMask's provider
+          web3js = new Web3(web3.currentProvider);
+          console.log("has web3", web3);
+        } else {
+          alert("Please install MetaMask first");
+        }
+
+        // Now you can start your app & access web3js freely:
+        // startApp()
+      });
+    </script>
+  </body>
+</html>

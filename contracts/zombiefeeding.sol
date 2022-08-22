@@ -2,7 +2,7 @@ pragma solidity >=0.8.0 <0.9.0;
 
 import "./zombiefactory.sol";
 
-contract KittyInterface {
+interface KittyInterface {
     function getKitty(uint256 _id)
         external
         view
@@ -36,11 +36,11 @@ contract ZombieFeeding is ZombieFactory {
     }
 
     function _triggerCooldown(Zombie storage _zombie) internal {
-        _zombie.readyTime = uint32(now + cooldownTime);
+        _zombie.readyTime = uint32(block.timestamp + cooldownTime);
     }
 
     function _isReady(Zombie storage _zombie) internal view returns (bool) {
-        return (_zombie.readyTime <= now);
+        return (_zombie.readyTime <= block.timestamp);
     }
 
     function feedAndMultiply(

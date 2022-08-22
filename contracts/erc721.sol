@@ -1,6 +1,6 @@
 pragma solidity >=0.8.0 <0.9.0;
 
-contract ERC721 {
+interface ERC721 {
     event Transfer(
         address indexed _from,
         address indexed _to,

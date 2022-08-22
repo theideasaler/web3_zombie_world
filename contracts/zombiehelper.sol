@@ -5,10 +5,12 @@ import "./safemath.sol";
 
 contract ZombieHelper is ZombieFeeding {
     using SafeMath for uint256;
+    using SafeMath32 for uint32;
+    using SafeMath16 for uint16;
 
     uint256 private levelUpFee = 0.001 ether;
 
-    modifier aboveLevel(uint256 _level, unit _zombieId) {
+    modifier aboveLevel(uint256 _level, uint256 _zombieId) {
         require(
             zombies[_zombieId].level >= _level,
             "Zombie is not above level"
@@ -17,8 +19,8 @@ contract ZombieHelper is ZombieFeeding {
     }
 
     function withdraw() external onlyOwner {
-        address payable _owner = address(uint160(owner()));
-        _owner.transfer(address(this).balance);
+        address _owner = owner();
+        payable(_owner).transfer(address(this).balance);
     }
 
     function setLevelUpFee(uint256 _fee) external onlyOwner {
@@ -49,7 +51,7 @@ contract ZombieHelper is ZombieFeeding {
     function getZombiesByOwner(address _owner)
         external
         view
-        returns (uint256[] memeory)
+        returns (uint256[] memory)
     {
         uint256[] memory result = new uint256[](ownerZombieCount[_owner]);
         uint256 counter = 0;
