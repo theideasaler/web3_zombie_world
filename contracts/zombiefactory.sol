@@ -1,9 +1,10 @@
 pragma solidity >=0.8.0 <0.9.0;
 
+import "@chainlink/contracts/src/v0.8/interfaces/VRFConsumerBase.sol";
 import "./ownable.sol";
 import "./safemath.sol";
 
-contract ZombieFactory is Ownable {
+contract ZombieFactory is Ownable, VRFConsumerBase {
     using SafeMath for uint256;
     using SafeMath32 for uint32;
     using SafeMath16 for uint16;
@@ -27,6 +28,8 @@ contract ZombieFactory is Ownable {
 
     mapping(uint256 => address) public zombieToOwner;
     mapping(address => uint256) public ownerZombieCount;
+
+    constructor() VRFConsumerBase() {}
 
     function _createZombie(string memory _name, uint256 _dna) internal {
         zombies.push(
